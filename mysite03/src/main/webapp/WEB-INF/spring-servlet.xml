@@ -22,6 +22,21 @@
 	<!-- DefaultServlet Handler -->
 	<mvc:default-servlet-handler />
 
+	<!-- Message Source -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	    <property name="basenames">
+	       <list>
+	          <value>messages/message</value>
+	       </list>
+	    </property>
+	</bean>
+	
+	<!-- Locale Resolver -->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+	    <constructor-arg index="0" value="lang" />
+	    <property name="cookieHttpOnly" value="false" />
+	</bean>
+
 	<!-- mvc url-resource mapping -->
 	<mvc:resources mapping="/assets/upload-images/**" location="file:/Users/hyeonah/mysite-uploads" />
 	
@@ -45,6 +60,11 @@
 			<mvc:exclude-mapping path="/assets/**" />
 			<bean class="mysite.security.AuthInterceptor" />
 		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/assets/**" />
+			<bean class="mysite.interceptor.SiteInterceptor" />
+		</mvc:interceptor>
 	</mvc:interceptors>
 
 
@@ -57,6 +77,9 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
+	<!-- ApplicationContextEventListener -->
+	<bean class="mysite.event.ApplicationContextEventListener" />
+	
 	<context:annotation-config />
 	<context:component-scan
 		base-package="mysite.controller, mysite.exception" />

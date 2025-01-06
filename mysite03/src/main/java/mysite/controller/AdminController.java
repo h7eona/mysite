@@ -40,7 +40,6 @@ public class AdminController {
 		if(profile != null) {
 			siteVo.setProfile(profile);
 		}
-		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^" + siteVo.toString());
 		siteService.updateSite(siteVo);
 		return "redirect:/admin";
 	}
