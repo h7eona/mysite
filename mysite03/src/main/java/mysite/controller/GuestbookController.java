@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mysite.service.GuestbookService;
-import mysite.vo.GuestbookVo;
+import mysite.vo.GuestbookVo;;
 
 @Controller
 @RequestMapping("/guestbook")
@@ -21,6 +21,9 @@ public class GuestbookController {
 	
 	@RequestMapping("")
 	public String index(Model model) {
+//		SiteVo siteVo = SiteService.getSite();
+//		model.addAttribute("siteVo", siteVo);
+		
 		model.addAttribute("list", guestbookService.getContentsList());
 		return "guestbook/index";
 	}

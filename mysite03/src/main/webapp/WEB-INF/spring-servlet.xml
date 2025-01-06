@@ -22,6 +22,12 @@
 	<!-- DefaultServlet Handler -->
 	<mvc:default-servlet-handler />
 
+	<!-- mvc url-resource mapping -->
+	<mvc:resources mapping="/assets/upload-images/**" location="file:/Users/hyeonah/mysite-uploads" />
+	
+	<!-- Multipart Resolver -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
+	
 	<!-- Interceptors -->
 	<mvc:interceptors>
 		<mvc:interceptor>
