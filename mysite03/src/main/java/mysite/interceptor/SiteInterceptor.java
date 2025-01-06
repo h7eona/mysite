@@ -1,17 +1,20 @@
 package mysite.interceptor;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.LocaleResolver;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import mysite.service.SiteService;
+import mysite.vo.SiteVo;
 
 public class SiteInterceptor implements HandlerInterceptor {
-	private LocaleResolver localeResolver;
+	private final LocaleResolver localeResolver;
+	private final SiteService siteService;
 	
-	public SiteInterceptor(LocaleResolver localeResolver) {
+	public SiteInterceptor(LocaleResolver localeResolver, SiteService siteService) {
 		this.localeResolver =localeResolver;
+		this.siteService = siteService;
 	}
 	
 	@Override
@@ -19,6 +22,13 @@ public class SiteInterceptor implements HandlerInterceptor {
 		// locale
 		String lang = localeResolver.resolveLocale(request).getLanguage();
 		request.setAttribute("lang", lang);
+		
+		// SiteVo Application Scope
+//		SiteVo siteVo = (SiteVo)request.getServletContext().getAttribute("siteVo");
+//		if(siteVo == null) {
+//			siteVo = siteService.getSite(1L);
+//			request.getServletContext().setAttribute("siteVo", siteVo);
+//		}
 		
 		return true;
 	}
