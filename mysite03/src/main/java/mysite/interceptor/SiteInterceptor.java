@@ -23,12 +23,12 @@ public class SiteInterceptor implements HandlerInterceptor {
 		String lang = localeResolver.resolveLocale(request).getLanguage();
 		request.setAttribute("lang", lang);
 		
-		// SiteVo Application Scope
-//		SiteVo siteVo = (SiteVo)request.getServletContext().getAttribute("siteVo");
-//		if(siteVo == null) {
-//			siteVo = siteService.getSite(1L);
-//			request.getServletContext().setAttribute("siteVo", siteVo);
-//		}
+	    // SiteVo Application Scope
+		SiteVo siteVo = (SiteVo)request.getServletContext().getAttribute("siteVo");
+		if(siteVo == null) {
+			siteVo = siteService.getSite(1L);
+			request.getServletContext().setAttribute("siteVo", siteVo);
+		}
 		
 		return true;
 	}

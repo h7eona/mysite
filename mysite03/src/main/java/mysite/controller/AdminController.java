@@ -49,8 +49,11 @@ public class AdminController {
 			siteVo.setProfile(profile);
 		}
 		siteService.updateSite(siteVo);
+		
+		// update servlet context bean
 		servletContext.setAttribute("siteVo", siteVo);
 		
+		// update application context bean 
 		SiteVo site = applicationContext.getBean(SiteVo.class);
 		BeanUtils.copyProperties(siteVo, site);
 		
