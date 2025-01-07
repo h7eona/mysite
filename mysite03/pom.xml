@@ -40,6 +40,13 @@
 			<artifactId>spring-aspects</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+		
+		<!-- hibernate validator -->
+		<dependency>
+		   <groupId>org.hibernate</groupId>
+		   <artifactId>hibernate-validator</artifactId>
+		   <version>8.0.0.Final</version>
+		</dependency>
 
 		<!-- spring jdbc -->
 		<dependency>

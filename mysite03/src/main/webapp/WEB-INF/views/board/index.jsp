@@ -1,6 +1,7 @@
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %>
 <%@ taglib uri="jakarta.tags.functions" prefix="fn" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -30,11 +31,11 @@
 				
 					<table class="tbl-ex">
 						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>글쓴이</th>
-							<th>조회수</th>
-							<th>작성일</th>
+							<th><spring:message code="board.number" /></th>
+							<th><spring:message code="board.title" /></th>
+							<th><spring:message code="board.writer" /></th>
+							<th><spring:message code="board.hit" /></th>
+							<th><spring:message code="board.date" /></th>
 							<th>&nbsp;</th>
 						</tr>			
 						
