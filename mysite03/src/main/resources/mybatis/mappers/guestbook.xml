@@ -13,6 +13,17 @@
 		]]>
 	</select>
 	
+	<select id="findById" parameterType="long" resultType="guestbookvo">
+		<![CDATA[
+		  select id,
+				 name,
+				 contents,
+				 date_format(reg_date, '%Y-%m-%d') as regDate
+			from guestbook
+	       where id=#{id}
+		]]>
+	</select>
+	
 	<insert id="insert" parameterType="guestbookvo">
 		<![CDATA[
 		insert
