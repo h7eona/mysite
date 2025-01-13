@@ -2,6 +2,7 @@ package mysite.exception;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import mysite.dto.JsonResult;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -32,6 +34,7 @@ public class GlobalExceptionHandler {
 		
 		if(accept.matches(".*application/json.*")) {
 			// 3. JSON 응답
+			JsonResult jsonResult = JsonResult.fail(errors.toString());
 		} else {
 			// 4. 사과 페이지(종료)
 			request.setAttribute("errors", errors.toString());
