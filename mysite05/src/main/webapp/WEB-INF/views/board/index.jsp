@@ -2,6 +2,7 @@
 <%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %>
 <%@ taglib uri="jakarta.tags.functions" prefix="fn" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -99,9 +100,9 @@
 				</div>				
 				
 				<div class="bottom">
-					<c:if test='${not empty authUser }'>
+					<sec:authorize access="isAuthenticated()">
 						<a href="${pageContext.request.contextPath}/board/write" id="new-book">글쓰기</a>
-					</c:if>
+					</sec:authorize>
 				</div>				
 			</div>
 		</div>

@@ -2,6 +2,7 @@ package mysite.controller;
 
 import java.util.Map;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -71,8 +72,8 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/write", method=RequestMethod.POST)
-	public String write(BoardVo vo, HttpSession session) {
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
+	public String write(BoardVo vo, Authentication authentication) {
+		UserVo authUser = (UserVo) authentication.getPrincipal();
 		vo.setHit(0);
 		vo.setUserId(authUser.getId());
 		boardService.addContents(vo, authUser);
