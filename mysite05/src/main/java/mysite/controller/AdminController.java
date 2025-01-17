@@ -9,12 +9,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.servlet.ServletContext;
-import mysite.security.Auth;
 import mysite.service.FileUploadService;
 import mysite.service.SiteService;
 import mysite.vo.SiteVo;
 
-@Auth(role="ADMIN")
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
