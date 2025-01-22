@@ -2,8 +2,8 @@ package mysite.config;
 
 import java.io.IOException;
 
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
@@ -27,14 +27,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import mysite.repository.UserRepository;
 import mysite.security.UserDetailsServiceImpl;
 
-@Configuration
+@SpringBootConfiguration
 @EnableWebSecurity
 public class SecurityConfig {
-	@Bean
+    @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return webSecurity -> webSecurity.httpFirewall(new DefaultHttpFirewall());
     }
-	
+    
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -76,14 +76,15 @@ public class SecurityConfig {
         			//.authenticated()
         			.hasAnyRole("ADMIN", "USER")
 
-    				.requestMatchers(new RegexRequestMatcher("^/board/?(write|delete|view)$", null))
+    				.requestMatchers(new RegexRequestMatcher("^/board/?(write|modify|delete|reply)$", null))
         			.hasAnyRole("ADMIN", "USER")
         			
         			.anyRequest()
         			.permitAll();
-        	})
+        	});
+        /*
         	.exceptionHandling(exceptionHandling -> {
-//        		 exceptionHandling.accessDeniedPage("/WEB-INF/views/errors/403.jsp");
+        		// exceptionHandling.accessDeniedPage("/error/403.jsp");
         		exceptionHandling.accessDeniedHandler(new AccessDeniedHandler() {
 					@Override
 					public void handle(
@@ -94,7 +95,7 @@ public class SecurityConfig {
 					}
         		});
         	});
-        
+        */
     	return http.build();
     }
     

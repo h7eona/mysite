@@ -1,15 +1,11 @@
 package mysite.vo;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class SiteVo {
 	private Long id;
 	private String title;
 	private String welcome;
 	private String profile;
 	private String description;
-	
 	public Long getId() {
 		return id;
 	}
